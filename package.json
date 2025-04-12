@@ -1,6 +1,6 @@
 {
   "name": "bivvy",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A Zero-Dependency Stateful PRD Framework for AI-Driven Development",
   "bin": {
     "bivvy": "./bin/bivvy.js"
