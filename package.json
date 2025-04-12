@@ -15,10 +15,10 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "prepublishOnly": "npm run test --passWithNoTests && npm run lint"
+    "prepublishOnly": "npm run test && npm run lint"
   },
   "repository": {
     "type": "git",
