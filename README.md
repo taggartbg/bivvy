@@ -10,17 +10,6 @@ npx bivvy init --cursor
 
 Then ask your AI agent to create a new `climb` and you're ready to go!
 
-### Running Locally
-
-Want to try out changes or contribute? Clone the repo and copy the files manually:
-
-```bash
-git clone https://github.com/taggartbg/bivvy.git
-mkdir your-project/.bivvy
-cp -r bivvy/src/example/* your-project/.bivvy
-cp bivvy/src/rules/.cursor.mdc your-project/.cursor/rules/bivvy.mdc
-```
-
 ## Supported Clients
 
 Currently, Bivvy supports:
@@ -103,6 +92,17 @@ A "Climb" is Bivvy's term for a development project, which can be a feature, bug
 - Mark non-critical tasks as `skip` to focus on core functionality
 - Keep moves small and focused (2-3 code changes)
 - Trust the process and follow moves in order
+
+### Running Locally
+
+Want to try out changes or contribute? Clone the repo and copy the files manually:
+
+```bash
+git clone https://github.com/taggartbg/bivvy.git
+mkdir your-project/.bivvy
+cp -r bivvy/src/example/* your-project/.bivvy
+cp bivvy/src/rules/.cursor.mdc your-project/.cursor/rules/bivvy.mdc
+```
 
 ## Contributing
 
