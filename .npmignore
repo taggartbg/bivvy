@@ -1,0 +1,24 @@
+# Development files
+.git
+.github
+.gitignore
+.npmignore
+.eslintrc.js
+.prettierrc
+jest.config.js
+
+# Test files
+__tests__
+*.test.js
+*.spec.js
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Misc
+.editorconfig
+.vscode/
+.idea/
+*.log 

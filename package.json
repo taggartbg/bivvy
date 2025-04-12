@@ -1,0 +1,50 @@
+{
+  "name": "bivvy",
+  "version": "0.1.0",
+  "description": "A tool to initialize project files",
+  "main": "index.js",
+  "bin": {
+    "bivvy": "./bin/bivvy.js"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "prepublishOnly": "npm run test && npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taggartbg/bivvy.git"
+  },
+  "keywords": [
+    "init",
+    "scaffold",
+    "template"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/taggartbg/bivvy/issues"
+  },
+  "homepage": "https://github.com/taggartbg/bivvy#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "fs-extra": "^11.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.2.5"
+  }
+} 
