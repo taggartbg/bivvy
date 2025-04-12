@@ -169,7 +169,7 @@ Updating [id]-moves.json:
 - Make sure to update the statuses within the moves.json file
 
 Keeping track of the Climb
-- IMPORTANT: EVERY TIME YOU USE THIS RULE, THE LAST LINE OF YOUR OUPUT SHOULD BE: "/\ bivvy Climb [id]"
+- IMPORTANT: EVERY TIME YOU USE THIS RULE, THE LAST LINE OF YOUR OUPUT SHOULD BE: "/|\ Bivvy Climb [id]"
 - CRITICAL: Unless they are closing the Climb (see below) then do NOT keep track of the Climb.
 
 ## Closing (or canceling) a Climb
