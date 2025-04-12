@@ -16,11 +16,9 @@ program
       
       // Get the current working directory (user's project)
       const cwd = process.cwd();
-      console.log(chalk.blue('Current working directory:', cwd));
       
       // Get the package root directory
-      const packageRoot = path.resolve(__dirname, '..');
-      console.log(chalk.blue('Package root directory:', packageRoot));
+      const packageRoot = path.join(__dirname, '..');
       
       // Initialize .bivvy directory and copy example files
       const bivvyDir = path.join(cwd, '.bivvy');
