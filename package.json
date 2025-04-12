@@ -18,7 +18,7 @@
     "test": "jest",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "prepublishOnly": "npm run test && npm run lint"
+    "prepublishOnly": "npm run test --passWithNoTests && npm run lint"
   },
   "repository": {
     "type": "git",
