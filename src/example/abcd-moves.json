@@ -1,0 +1,21 @@
+{
+  "climb": "0000",
+  "moves": [
+    {
+      "status": "complete",
+      "description": "install the dependencies",
+      "details": "install the deps listed as New Dependencies"
+    }, {
+      "status": "skip",
+      "description": "Write tests"
+    }, {
+      "status": "climbing",
+      "description": "Build the first part of the feature",
+      "rest": "true"
+    }, {
+      "status": "todo",
+      "description": "Build the last part of the feature",
+      "details": "After this, you'd ask the user if they want to return to write tests"
+    }
+  ]
+}
