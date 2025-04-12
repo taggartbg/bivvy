@@ -1,8 +1,7 @@
 {
   "name": "bivvy",
   "version": "0.1.0",
-  "description": "A tool to initialize project files",
-  "main": "index.js",
+  "description": "A Zero-Dependency Stateful PRD Framework for AI-Driven Development",
   "bin": {
     "bivvy": "./bin/bivvy.js"
   },
@@ -30,7 +29,7 @@
     "scaffold",
     "template"
   ],
-  "author": "",
+  "author": "Taggart Bowen-Gaddy",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/taggartbg/bivvy/issues"
