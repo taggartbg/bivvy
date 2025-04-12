@@ -10,6 +10,8 @@ npx bivvy init --cursor
 
 Then ask your AI agent to create a new `climb` and you're ready to go!
 
+**(NOTE: We suggest you commit the created Bivvy files before making additional changes)
+
 ## Supported Clients
 
 Currently, Bivvy supports:
