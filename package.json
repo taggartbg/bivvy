@@ -1,6 +1,6 @@
 {
   "name": "bivvy",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A Zero-Dependency Stateful PRD Framework for AI-Driven Development",
   "bin": {
     "bivvy": "./bin/bivvy.js"
@@ -34,7 +34,7 @@
   "bugs": {
     "url": "https://github.com/taggartbg/bivvy/issues"
   },
-  "homepage": "https:/www.bivvy.ai",
+  "homepage": "https://www.bivvy.ai",
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^11.1.0",
