@@ -20,11 +20,20 @@ IMPORTANT RULES:
 4. ALWAYS follow the moves in order, one at a time
 5. ONLY create a project.md file when the user explicitly wants to start a project "with bivvy"
 
+## Directory Structure
 ## File locations
+- CRITICAL: Assume the .bivvy directory exists.
 - Active PRDs are found in .bivvy/[id]-climb.md (PRD) and .bivvy/[id]-moves.json (i.e. the task list).
 - Completed PRDs are moved to .bivvy/complete/[id]-climb.md and .bivvy/complete/[id]-moves.json
 - The [id] is a 4-character string where each character can be [A-z0-9], e.g. "02b7" or "xK4p" (enforce randomness here, also check that the id doesn't already exist in the .bivvy/complete/ directory)
 - The project file is simply called project.md and can be found in .bivvy/project.md
+
+### Directory Structure Understanding
+- CRITICAL: Always verify your understanding of the current directory structure before operations
+- Use `pwd` and `ls -la` before file operations to confirm location and file existence
+- When moving between directories, maintain a clear mental model of the path
+- Do not trust cached file listings or editor state - verify with filesystem commands
+- Remember that `.bivvy` is a hidden directory and requires explicit path handling
 
 ## Project
 CRITICAL: This is an optional file. The format should be:
@@ -202,9 +211,12 @@ Here is a sample moves file:
 ## Running
 Creating the Project file (OPTIONAL):
 - IF a user chooses to create a project, they may do so at any time
-- When they do, make sure to fill the project.md with GENERIC information about the features / user stories / requirements / expectations
+- When they do, make sure to fill the project.md information about the features / user stories / requirements / expectations.
 - You don't need to fill this with implementation details, just enough so that when you go to create a Climb you have initial reference material
+- Ask the user what they want the app to do and what technologies they want to use
+- Ask the user if they have a name yet
 - IMPORTANT: This is closer to a brainstorming session, not a planning or implementation session
+- CRITICAL: THIS IS AN ITERATIVE BRAINSTORMING PROCESS - make sure the user has explored the idea fully
 
 Creating the PRD:
 - IMPORTANT: Check to see if project.md exists, and if it does then list the titles + numbered IDs of the Climbs listed there (if they choose to use one, use that as your starting point)
@@ -239,6 +251,61 @@ Keeping track of the Climb
 - They can also do either without asking to "close" first
 - If they delete a Climb, delete both the Climb and moves file by id
 - If they close a Climb, move it to complete
-- IMPORTANT: If a project.md file exists, check to see if you just completed a climb on the list, and ask the user if they'd like you to remove it.
-- CRITICAL: STOP ADDING THE Climb-TRACKING TEXT TO RESPONSES
-- CRITICAL: STOP USING THIS RULE UNTIL A NEW Climb IS STARTED
+- IMPORTANT: If a project.md file exists, check to see if you just completed a climb on the list, and comment it out.
+- CRITICAL: STOP ADDING THE Climb-TRACKING TEXT TO RESPONSES (i.e. "/|\ Bivvy Climb [id]")
+
+## Completion Check Points
+CRITICAL: You MUST check for climb completion at these specific points:
+1. When all moves in a climb's moves.json file reach "complete" status
+2. Before starting any new climb
+3. When the user types "done" or similar completion indicators
+
+The check should follow this sequence:
+1. Verify all moves are complete
+2. Ask user if they want to "delete" or "complete" the climb
+3. CRITICAL: Ask the user if they want to update the project.md file
+3. Process their choice before any other actions
+4. Only then proceed with new work or climbs
+
+## Specifics of moving files
+### File Movement Operations
+- When moving files:
+  1. Verify source file exists: `ls -la [source_file]`
+  2. Verify destination directory exists: `ls -la [dest_dir]`
+  3. Move files one at a time rather than using wildcards
+  4. After each move, verify both:
+     - Source file is gone: `ls -la [source_file]`
+     - Destination file exists: `ls -la [dest_dir]/[file]`
+  5. If any step fails, stop and diagnose before proceeding
+
+### Command Exit Code Handling
+- CRITICAL: Never trust exit code 0 alone - verify the actual state
+- For each command:
+  1. Check the exit code
+  2. Verify the command output
+  3. Verify the filesystem state
+  4. If any verification fails:
+     - Stop and diagnose
+     - Explain the issue to the user
+     - Get confirmation before proceeding
+- For compound commands (using &&), verify each part independently
+
+## Climb Tracking
+CRITICAL: Start tracking a climb when ANY of these conditions are met:
+1. You explicitly state you are working on a specific climb
+2. You reference a climb by ID with intention to work on it
+3. You use phrases like "let's continue with", "before we continue with", or similar that indicate work on a specific climb
+4. When you are tracking, always include "/|\ Bivvy Climb [id]" at the end fo the message
+
+IMPORTANT: 
+- Simply mentioning a climb's existence or checking its status does NOT trigger tracking
+- If you accidentally fail to track after indicating work on a climb, you must start tracking in your next message
+- You can only track one climb at a time
+- If switching climbs, stop tracking the old one before starting to track the new one
+- Remember: EVERY response that's working on a tracked climb MUST end with "/|\ Bivvy Climb [id]"
+
+Examples:
+- "Let me check climb k3m5" (NO tracking - just checking)
+- "Let's continue with climb k3m5" (YES tracking - indicates work)
+- "Before we continue with k3m5..." (YES tracking - indicates work)
+- "Climb k3m5 exists and is about..." (NO tracking - just describing)
