@@ -59,7 +59,38 @@ program
 
       // Handle windsurf initialization if --windsurf flag is set
       if (options.windsurf) {
-        console.log(chalk.yellow('⚠️ Windsurf configuration is a placeholder for future functionality'));
+        // Copy cursor.mdc to .bivvy/bivvy.mdc
+        const rulesSourceFile = path.join(packageRoot, 'src', 'rules', 'cursor.mdc');
+        const bivvyMdcTarget = path.join(bivvyDir, 'bivvy.mdc');
+        
+        console.log(chalk.blue('Copying rules file to .bivvy/bivvy.mdc'));
+        if (!fs.existsSync(rulesSourceFile)) {
+          throw new Error(`Rules source file not found: ${rulesSourceFile}`);
+        }
+        await fs.copyFile(rulesSourceFile, bivvyMdcTarget);
+        console.log(chalk.green('✓ Copied rules to .bivvy/bivvy.mdc'));
+
+        // Handle .windsurfrules file
+        const windsurfRulesPath = path.join(cwd, '.windsurfrules');
+        const overviewSourcePath = path.join(packageRoot, 'src', 'example', 'bivvy-agent-overview.md');
+        
+        if (!fs.existsSync(overviewSourcePath)) {
+          throw new Error(`Overview source file not found: ${overviewSourcePath}`);
+        }
+
+        const overviewContent = await fs.readFile(overviewSourcePath, 'utf8');
+        
+        if (fs.existsSync(windsurfRulesPath)) {
+          // Append to existing file
+          console.log(chalk.blue('Appending to existing .windsurfrules file'));
+          await fs.appendFile(windsurfRulesPath, `\n${overviewContent}`);
+          console.log(chalk.green('✓ Appended content to .windsurfrules'));
+        } else {
+          // Create new file
+          console.log(chalk.blue('Creating new .windsurfrules file'));
+          await fs.writeFile(windsurfRulesPath, overviewContent);
+          console.log(chalk.green('✓ Created .windsurfrules file'));
+        }
       }
 
       console.log(chalk.green('✓ Project files created successfully!'));
