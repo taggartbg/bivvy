@@ -15,20 +15,20 @@ async function initializeProject(options) {
   // Get the package root directory
   const packageRoot = path.join(__dirname, '..');
   
-  // Initialize .bivvy directory and copy example files
+  // Initialize .bivvy directory
   const bivvyDir = path.join(cwd, '.bivvy');
-  const exampleDir = path.join(packageRoot, 'src', 'example');
+  await fs.ensureDir(bivvyDir);
   
-  console.log(chalk.blue('Source example directory:', exampleDir));
-  console.log(chalk.blue('Target bivvy directory:', bivvyDir));
+  // Copy quickstart guide
+  const quickstartSource = path.join(packageRoot, 'src', 'bivvy-quickstart.md');
+  const quickstartTarget = path.join(bivvyDir, 'quickstart.md');
   
-  // Check if source directory exists
-  if (!fs.existsSync(exampleDir)) {
-    throw new Error(`Source directory not found: ${exampleDir}`);
+  if (!fs.existsSync(quickstartSource)) {
+    throw new Error(`Quickstart guide not found: ${quickstartSource}`);
   }
   
-  await fs.copy(exampleDir, bivvyDir, { overwrite: true });
-  console.log(chalk.green('✓ Copied example files to .bivvy directory'));
+  await fs.copyFile(quickstartSource, quickstartTarget);
+  console.log(chalk.green('✓ Copied quickstart guide to .bivvy directory'));
 
   const rules = [
     'bivvy-base.mdc',
@@ -45,7 +45,7 @@ async function initializeProject(options) {
     
     await Promise.all(rules.map(async (rule) => {
       // Copy rule to .cursor/rules/[rule]
-      const sourceFile = path.join(packageRoot, 'src', 'rules', rule);
+      const sourceFile = path.join(packageRoot, 'src', rule);
       const targetFile = path.join(rulesDir, rule);
       
       console.log(chalk.blue(`Source rules file: ${rule}`, sourceFile));
@@ -65,7 +65,7 @@ async function initializeProject(options) {
   if (options.windsurf) {
     // Copy rules to .bivvy directory
     await Promise.all(rules.map(async (rule) => {
-      const sourceFile = path.join(packageRoot, 'src', 'rules', rule);
+      const sourceFile = path.join(packageRoot, 'src', rule);
       const targetFile = path.join(bivvyDir, rule);
       
       console.log(chalk.blue(`Copying rules file: ${rule}`));
@@ -78,13 +78,13 @@ async function initializeProject(options) {
 
     // Handle .windsurfrules file
     const windsurfRulesPath = path.join(cwd, '.windsurfrules');
-    const overviewSourcePath = path.join(packageRoot, 'src', 'example', 'bivvy-agent-overview.md');
+    const agentOverviewPath = path.join(packageRoot, 'src', 'bivvy-agent-overview.md');
     
-    if (!fs.existsSync(overviewSourcePath)) {
-      throw new Error(`Overview source file not found: ${overviewSourcePath}`);
+    if (!fs.existsSync(agentOverviewPath)) {
+      throw new Error(`Agent overview file not found: ${agentOverviewPath}`);
     }
 
-    const overviewContent = await fs.readFile(overviewSourcePath, 'utf8');
+    const overviewContent = await fs.readFile(agentOverviewPath, 'utf8');
     
     if (fs.existsSync(windsurfRulesPath)) {
       // Append to existing file
