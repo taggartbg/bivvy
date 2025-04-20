@@ -1,6 +1,11 @@
-[bivvy-base.md](mdc:.cursor/rules/bivvy-base.md)
+---
+description: A user is done with a Bivvy Climb and wants to close, complete, or delete it.
+globs: 
+alwaysApply: false
+---
+[bivvy-base.mdc](mdc:.cursor/rules/bivvy-base.mdc)
 
-REQUIRED_CONTEXT: bivvy-base.md
+REQUIRED_CONTEXT: bivvy-base.mdc
 
 ## Ending Tracking
 - FIRST: Verify an active Climb exists to close

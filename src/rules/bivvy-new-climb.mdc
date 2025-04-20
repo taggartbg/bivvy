@@ -1,6 +1,11 @@
-[bivvy-base.md](mdc:.cursor/rules/bivvy-base.md)
+---
+description: A user wants to create a new BIvvy Climb
+globs: 
+alwaysApply: false
+---
+[bivvy-base.mdc](mdc:.cursor/rules/bivvy-base.mdc)
 
-REQUIRED_CONTEXT: bivvy-base.md
+REQUIRED_CONTEXT: bivvy-base.mdc
 
 ## Starting Tracking
 - FIRST: Check if any active Climbs exist

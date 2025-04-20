@@ -1,3 +1,8 @@
+---
+description: A user wants to interact with or create a BIvvy Climb or understand how to use Bivvy
+globs: 
+alwaysApply: false
+---
 ## Climb Tracking
 - Every Climb has a unique identifier [id] (4-character string [A-z0-9])
 - When a Climb is active, ALL responses must end with: "/|\ Bivvy Climb [id]"

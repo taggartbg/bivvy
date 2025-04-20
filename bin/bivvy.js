@@ -34,6 +34,14 @@ program
       
       await fs.copy(exampleDir, bivvyDir, { overwrite: true });
       console.log(chalk.green('✓ Copied example files to .bivvy directory'));
+
+
+      const rules = [
+        'bivvy-base.mdc',
+        'bivvy-continue-climbing.md',
+        'bivvy-done-climbing.md',
+        'bivvy-new-climb.md'
+      ];
       
       // Handle cursor initialization if --cursor flag is set
       if (options.cursor) {
@@ -41,20 +49,22 @@ program
         const rulesDir = path.join(cwd, '.cursor', 'rules');
         await fs.ensureDir(rulesDir);
         
-        // Copy cursor.mdc to .cursor/rules/bivvy.mdc
-        const sourceFile = path.join(packageRoot, 'src', 'rules', 'cursor.mdc');
-        const targetFile = path.join(rulesDir, 'bivvy.mdc');
-        
-        console.log(chalk.blue('Source rules file:', sourceFile));
-        console.log(chalk.blue('Target rules file:', targetFile));
-        
-        // Check if source file exists
-        if (!fs.existsSync(sourceFile)) {
-          throw new Error(`Source file not found: ${sourceFile}`);
-        }
-        
-        await fs.copyFile(sourceFile, targetFile);
-        console.log(chalk.green('✓ Copied cursor rules to .cursor/rules/bivvy.mdc'));
+        await Promise.all(rules.map(async (rule) => {
+          // Copy rule to .cursor/rules/[rule]
+          const sourceFile = path.join(packageRoot, 'src', 'rules', rule);
+          const targetFile = path.join(rulesDir, rule);
+          
+          console.log(chalk.blue(`Source rules file: ${rule}`, sourceFile));
+          console.log(chalk.blue(`Target rules file: ${rule}`, targetFile));
+          
+          // Check if source file exists
+          if (!fs.existsSync(sourceFile)) {
+            throw new Error(`Source file not found: ${sourceFile}`);
+          }
+          
+          await fs.copyFile(sourceFile, targetFile);
+          console.log(chalk.green(`✓ Copied cursor rules to .cursor/rules/${rule}`));
+        }));
       }
 
       // Handle windsurf initialization if --windsurf flag is set

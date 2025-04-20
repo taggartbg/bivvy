@@ -1,6 +1,11 @@
-[bivvy-base.md](mdc:.cursor/rules/bivvy-base.md)
+---
+description: A user wants to continue working on a Bivvy Climb, work on or change Bivvy Moves
+globs: 
+alwaysApply: false
+---
+[bivvy-base.mdc](mdc:.cursor/rules/bivvy-base.mdc)
 
-REQUIRED_CONTEXT: bivvy-base.md
+REQUIRED_CONTEXT: bivvy-base.mdc
 
 ## Continuing Tracking
 - FIRST: Check for existing Climbs in .bivvy directory
