@@ -31,6 +31,12 @@ When you run `bivvy init --cursor`, Bivvy:
 2. Sets up a `.bivvy` directory with example files
 3. Creates a `.bivvy/complete` directory for finished work
 
+### Optional Projects
+
+Bivvy supports an optional Project concept - a collection of Climbs described at a high level. Projects help outline and describe Climbs before diving into specific implementations. This is particularly useful for empty codebases.  To create a Project, explicitly ask your AI agent to "start a project with bivvy". The agent will help you brainstorm and outline the general features, user stories, and requirements.
+
+Projects are stored in `.bivvy/project.md` and can be referenced when creating new Climbs. They contain general information while Climbs contain specific implementation details.
+
 ### The Climb Concept
 
 A "Climb" is Bivvy's term for a development project, which can be a feature, bug fix, task, or exploration. Each Climb consists of two key components:
@@ -51,6 +57,7 @@ A "Climb" is Bivvy's term for a development project, which can be a feature, bug
 
 ```
 .bivvy/
+├── project.md         # Optional project overview (if created)
 ├── [id]-climb.md      # Active PRD
 ├── [id]-moves.json    # Active task list
 └── complete/          # Completed climbs
@@ -80,12 +87,13 @@ A "Climb" is Bivvy's term for a development project, which can be a feature, bug
 ### Example Workflow
 
 1. Initialize Bivvy: `npx bivvy init --cursor`
-2. Start a new climb: "Create a new feature climb for adding user authentication"
-3. Review and approve the PRD
-4. Review and approve the moves list
-5. Let the agent work through the moves
-6. Review and approve each significant change
-7. Complete the climb when done
+2. (Optional) Start a project: "Start a project with bivvy for [your project]"
+3. Start a new climb: "Create a new feature climb for adding user authentication"
+4. Review and approve the PRD
+5. Review and approve the moves list
+6. Let the agent work through the moves
+7. Review and approve each significant change
+8. Complete the climb when done
 
 ### Best Practices
 
