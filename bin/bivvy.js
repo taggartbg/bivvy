@@ -69,16 +69,18 @@ program
 
       // Handle windsurf initialization if --windsurf flag is set
       if (options.windsurf) {
-        // Copy cursor.mdc to .bivvy/bivvy.mdc
-        const rulesSourceFile = path.join(packageRoot, 'src', 'rules', 'cursor.mdc');
-        const bivvyMdcTarget = path.join(bivvyDir, 'bivvy.mdc');
-        
-        console.log(chalk.blue('Copying rules file to .bivvy/bivvy.mdc'));
-        if (!fs.existsSync(rulesSourceFile)) {
-          throw new Error(`Rules source file not found: ${rulesSourceFile}`);
-        }
-        await fs.copyFile(rulesSourceFile, bivvyMdcTarget);
-        console.log(chalk.green('✓ Copied rules to .bivvy/bivvy.mdc'));
+        // Copy rules to .bivvy directory
+        await Promise.all(rules.map(async (rule) => {
+          const sourceFile = path.join(packageRoot, 'src', 'rules', rule);
+          const targetFile = path.join(bivvyDir, rule);
+          
+          console.log(chalk.blue(`Copying rules file: ${rule}`));
+          if (!fs.existsSync(sourceFile)) {
+            throw new Error(`Rules source file not found: ${sourceFile}`);
+          }
+          await fs.copyFile(sourceFile, targetFile);
+          console.log(chalk.green(`✓ Copied rules to .bivvy/${rule}`));
+        }));
 
         // Handle .windsurfrules file
         const windsurfRulesPath = path.join(cwd, '.windsurfrules');
