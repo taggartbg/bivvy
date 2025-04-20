@@ -42,7 +42,9 @@ IMPORTANT: When collecting information, we need to know if this is a feature, bu
 </Climb>
 **ENDFILE**
 
-## Standard PRD Components
+Note: no tasks / moves...just everything needed to carry them out
+
+The PRD will differ with every Climb, but here are some guidelines:
 Key Components to Include:
 - Feature Overview
 - Requirements
@@ -52,24 +54,7 @@ Key Components to Include:
 - Design Assets
 - Future Considerations
 
-Formatting Best Practices:
-- Be Specific: Avoid vague language; use precise descriptions
-- Use Clear Structure: Organize with consistent headers and formatting
-- Include Examples: Provide concrete examples when explaining complex functionality
-- Prioritize Requirements: Indicate which requirements are essential vs. nice-to-have
-- Link to Resources: Reference existing documentation, designs, or research
-- Keep It Concise: Focus on what's necessary; avoid unnecessary detail
-- Use Visual Aids: Include diagrams, flowcharts, or mockups when helpful
-- Define Technical Terms: Include a glossary if specialized terminology is used
-
-What to Avoid:
-- Prescribing Implementation Details: Focus on what, not how (unless necessary)
-- Including Task Lists: Leave specific tasks for project management tools
-- Rigid Timelines: PRDs describe requirements, not project schedules
-- Vague Goals: Ensure all success metrics are measurable
-- Overspecification: Allow room for engineering creativity in solutions
-- Ignoring Constraints: Acknowledge technical and business limitations
-- Excessive Jargon: Write for clarity across different team roles
+These components should be tailored to what makes sense for the specific Climb. Not all components will be relevant for every Climb, and the depth of detail should match the user's needs.
 
 ## Moves Base Structure
 Moves have the statuses: todo|climbing|skip|complete
@@ -83,6 +68,17 @@ Sample moves file structure:
       "status": "complete",
       "description": "install the dependencies",
       "details": "install the deps listed as New Dependencies"
+    }, {
+      "status": "skip",
+      "description": "Write tests"
+    }, {
+      "status": "climbing",
+      "description": "Build the first part of the feature",
+      "rest": "true"
+    }, {
+      "status": "todo",
+      "description": "Build the last part of the feature",
+      "details": "After this, you'd ask the user if they want to return to write tests"
     }
   ]
 }

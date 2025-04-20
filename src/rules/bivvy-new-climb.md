@@ -17,6 +17,7 @@ REQUIRED_CONTEXT: bivvy-base.md
 - CRITICAL: YOU MUST STOP after your first draft of the PRD and wait for user approval
 - CRITICAL: YOU MUST STOP after any significant changes to the PRD
 - The PRD must be approved before moving on to creating the moves list
+- Present the user opportunities to add more context to the PRD and suggest to them sections (Testing, required schemas or data examples, specific parts of the codebase to be aware of, etc.) that they might benefit from including.
 
 ## Creating Moves List
 Once the Climb is generated and approved by the user, generate the Moves list.

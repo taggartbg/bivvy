@@ -19,7 +19,24 @@ Once you reach the end of the Moves list and they've opted out of skipping, you 
 ## Handling Close or Cancel
 - If the user asks to close a Climb, ask them if they want to "delete" it or "complete" it
 - They can also do either without asking to "close" first
-- If they delete a Climb, delete both the Climb and moves file by id
-- If they close a Climb, move it to complete
+- If they delete a Climb:
+  1. Delete both the Climb and moves file by id
+  2. Remove all references to the Climb
+  3. Confirm deletion to user
+- If they close a Climb:
+  1. Move PRD to .bivvy/complete/[id]-climb.md
+  2. Move moves list to .bivvy/complete/[id]-moves.json
+  3. Confirm completion to user
 - CRITICAL: STOP ADDING THE Climb-TRACKING TEXT TO RESPONSES
 - CRITICAL: STOP USING THIS RULE UNTIL A NEW Climb IS STARTED
+
+## Final Cleanup
+- Ensure all files are in their proper locations
+- Verify no lingering references to the closed Climb remain
+- If user requested deletion:
+  - Confirm both files have been removed
+  - Suggest creating a new Climb if appropriate
+- If user completed the Climb:
+  - Confirm both files are in the complete directory
+  - Verify file permissions and structure
+  - Suggest creating a new Climb if appropriate
