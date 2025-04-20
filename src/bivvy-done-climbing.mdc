@@ -1,0 +1,47 @@
+---
+description: A user is done with a Bivvy Climb and wants to close, complete, or delete it.
+globs: 
+alwaysApply: false
+---
+[bivvy-base.mdc](mdc:.cursor/rules/bivvy-base.mdc)
+
+REQUIRED_CONTEXT: bivvy-base.mdc
+
+## Ending Tracking
+- FIRST: Verify an active Climb exists to close
+- If no active Climb, inform user and stop
+- If multiple active Climbs, ask which one to close
+- When completing or deleting a Climb:
+  1. Update the appropriate files based on user choice
+  2. CRITICAL: IMMEDIATELY STOP tracking the Climb
+  3. CRITICAL: Do NOT include "/|\ Bivvy Climb [id]" in response
+  4. Inform user the Climb has been closed
+  5. Suggest creating a new Climb if appropriate
+
+## Closing a Climb
+Once you reach the end of the Moves list and they've opted out of skipping, you will mark the Climb as complete in both the PRD and the Moves list, and move both files to the .bivvy/complete/ directory.
+
+## Handling Close or Cancel
+- If the user asks to close a Climb, ask them if they want to "delete" it or "complete" it
+- They can also do either without asking to "close" first
+- If they delete a Climb:
+  1. Delete both the Climb and moves file by id
+  2. Remove all references to the Climb
+  3. Confirm deletion to user
+- If they close a Climb:
+  1. Move PRD to .bivvy/complete/[id]-climb.md
+  2. Move moves list to .bivvy/complete/[id]-moves.json
+  3. Confirm completion to user
+- CRITICAL: STOP ADDING THE Climb-TRACKING TEXT TO RESPONSES
+- CRITICAL: STOP USING THIS RULE UNTIL A NEW Climb IS STARTED
+
+## Final Cleanup
+- Ensure all files are in their proper locations
+- Verify no lingering references to the closed Climb remain
+- If user requested deletion:
+  - Confirm both files have been removed
+  - Suggest creating a new Climb if appropriate
+- If user completed the Climb:
+  - Confirm both files are in the complete directory
+  - Verify file permissions and structure
+  - Suggest creating a new Climb if appropriate
