@@ -1,6 +1,21 @@
-[bivvy-base.mdc](mdc:.cursor/rules/bivvy-base.mdc)
+[bivvy-base.md](mdc:.cursor/rules/bivvy-base.md)
 
-REQUIRED_CONTEXT: bivvy-base.mdc
+REQUIRED_CONTEXT: bivvy-base.md
+
+## Continuing Tracking
+- FIRST: Check for existing Climbs in .bivvy directory
+- If NO active Climbs exist:
+  1. Inform user: "No active Climbs found"
+  2. Ask if they want to create a new Climb
+  3. If yes, redirect to bivvy-new-climb
+  4. If no, stop
+
+- If MULTIPLE active Climbs exist:
+  1. List all active Climbs with [id] and description
+  2. Ask user which Climb they want to continue
+  3. Load that specific Climb's PRD and moves
+
+- Track the Climb being worked on at end of EVERY response: "/|\ Bivvy Climb [id]"
 
 ## Continuing a Climb
 Once alerted, you will then begin working on the Climb, move-by-move, soliciting user feedback and approval. Moves can have "rest: true" on it, at which point you WILL ALWAYS stop after completion to check with the user on status. They can also have the status "skip" on them, in which case you will skip it and ASK the user at the end if they want to return to it.

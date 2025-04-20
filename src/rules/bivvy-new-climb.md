@@ -1,6 +1,15 @@
-[bivvy-base.mdc](mdc:.cursor/rules/bivvy-base.mdc)
+[bivvy-base.md](mdc:.cursor/rules/bivvy-base.md)
 
-REQUIRED_CONTEXT: bivvy-base.mdc
+REQUIRED_CONTEXT: bivvy-base.md
+
+## Starting Tracking
+- FIRST: Check if any active Climbs exist
+- If active Climbs exist, ask user if they want to:
+  1. Continue an existing Climb (redirect to bivvy-continue-climbing)
+  2. Close an existing Climb (redirect to bivvy-done-climbing)
+  3. Create a new Climb anyway
+- Generate a random [id] that doesn't conflict with existing Climbs
+- After PRD and moves are approved, BEGIN tracking with: "/|\ Bivvy Climb [id]"
 
 ## Creating the PRD
 - THIS NEEDS TO BE ITERATIVE!

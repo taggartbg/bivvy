@@ -1,3 +1,15 @@
+## Climb Tracking
+- Every Climb has a unique identifier [id] (4-character string [A-z0-9])
+- When a Climb is active, ALL responses must end with: "/|\ Bivvy Climb [id]"
+- Before taking any action, ALWAYS check if there's an active Climb
+- To find active Climbs, look for files matching pattern ".bivvy/[id]-climb.md"
+- CRITICAL: Immediately determine if the user is starting a new Climb, continuing an existing Climb, or closing a Climb
+
+### Checking for Active Climbs
+- If multiple active Climbs exist, ask user which to work on
+- If no active Climbs exist when continuing, suggest creating a new one
+- NEVER track multiple Climbs simultaneously
+
 ## Description
 When a user requests to start a new Climb(feature, bug, task, or exploration), you will start a 2-phase process: Step 1 is to define a Product Requirements Document (PRD) via conversation with the user; Step 2 is to build a task list (a.k.a. "Moves") from that PRD.
 
